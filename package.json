@@ -1,17 +1,37 @@
 {
-  "author": "",
   "name": "chef",
-  "version": "0.0.1",
-  "repository": {
-    "url": ""
-  },
+  "version": "0.0.2",
+  "description": "Access the Opsode Chef Server API from node",
+  "main": "wrapper.js",
   "dependencies": {
-    "request": "*"
+    "request": "~2.14.0",
+    "ursa": "~0.8.0"
   },
-  "main": "chef",
   "devDependencies": {},
-  "optionalDependencies": {},
-  "engines": {
-    "node": "*"
-  }
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sgentle/chef-node.git"
+  },
+  "keywords": [
+    "api",
+    "chef",
+    "chef-api",
+    "chef-server",
+    "chef-lib"
+  ],
+  "contributors": [
+    {
+        "name": "Sam Gentle",
+        "email": "sam@samgentle.com",
+        "url": "http://samgentle.com/"
+    },
+    {
+        "name": "Mal Graty",
+        "email": "mal.graty@googlemail.com"
+    }
+  ],
+  "license": "MIT"
 }
