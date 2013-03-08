@@ -1,8 +1,8 @@
 {
   "name": "chef",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "description": "Access the Opsode Chef Server API from node",
-  "main": "wrapper.js",
+  "main": "chef.js",
   "dependencies": {
     "request": "~2.14.0",
     "ursa": "~0.8.0"
