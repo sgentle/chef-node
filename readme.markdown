@@ -1,15 +1,14 @@
-node-chef
-=========
+# node-chef
 
 Handles the basic authentication so you can get on with Cheffing.
 
-### Install
+## Install
 
 ~~~sh
 $ npm install chef
 ~~~
 
-### Examples
+## Examples
 
 Add role `bar` to node `foo`'s run list.
 
@@ -17,7 +16,7 @@ Add role `bar` to node `foo`'s run list.
 var fs = require('fs'),
     chef = require('chef');
 
-fs.readFile('/path/tp/pem.file', function (err, key) {
+fs.readFile('/path/to/pem.file', function (err, key) {
     var client = chef.createClient('username', key, 'http://chef.server.com:4000');
 
     client.get('/nodes/foo', function(err, res) {
@@ -30,7 +29,7 @@ fs.readFile('/path/tp/pem.file', function (err, key) {
 });
 ~~~
 
-### Methods
+## Methods
 
 The `client` object supports `delete`, `get`, `patch`, `post` and `put` methods and
 accepts relative and absolute URLs (so you can use URLs returned in responses).
