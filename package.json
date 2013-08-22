@@ -1,6 +1,6 @@
 {
   "name": "chef",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Access the Opscode Chef Server API from node",
   "main": "chef.js",
   "dependencies": {
