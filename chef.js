@@ -49,7 +49,7 @@ function req(method, uri, body, _) {
         headers['X-Ops-Authorization-' + ++line] = hash
     });
 
-    request(uri, {
+    return request(uri, {
         method: method,
         headers: headers,
         json: true,
@@ -64,7 +64,7 @@ function req(method, uri, body, _) {
 var methods = ['delete', 'get', 'patch', 'post', 'put'];
 methods.forEach(function (method) {
     Chef.prototype[method] = function (uri, body, _) {
-        req.call(this, method, uri, body, _);
+        return req.call(this, method, uri, body, _);
     }
 });
 
