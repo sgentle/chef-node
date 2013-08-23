@@ -19,11 +19,11 @@ var fs = require('fs'),
 fs.readFile('/path/to/pem.file', function (err, key) {
     var client = chef.createClient('username', key, 'http://chef.server.com:4000');
 
-    client.get('/nodes/foo', function(err, res) {
+    client.get('/nodes/foo', function(err, res, body) {
         if (err) return console.log(err);
-        res.run_list.push('role[bar]');
-        client.put('/nodes/foo', res, function(err, res) {
-            console.log(err ? err : res);
+        body.run_list.push('role[bar]');
+        client.put('/nodes/foo', body, function(err, res, body) {
+            console.log(err ? err : body);
         });
     });
 });

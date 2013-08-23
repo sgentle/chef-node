@@ -14,7 +14,7 @@ function Chef(user, key, base) {
     this.base = base ? base : '';
 }
 
-function req(method, uri, body, _) {
+function req(method, uri, body, callback) {
 
     method = method.toUpperCase()
 
@@ -22,19 +22,19 @@ function req(method, uri, body, _) {
         uri = this.base + uri;
 
     if ( typeof body === 'function' )
-        _ = body, body = undefined;
+        callback = body, body = undefined;
 
     var timestamp = new Date().toISOString().slice(0, -5) + 'Z',
         pathHash = sha1(url.parse(uri).path),
         bodyHash = sha1(body ? JSON.stringify(body) : ''),
 
-        req = 'Method:' + method + '\n'
+        canonicalReq = 'Method:' + method + '\n'
             + 'Hashed Path:' + pathHash + '\n'
             + 'X-Ops-Content-Hash:' + bodyHash + '\n'
             + 'X-Ops-Timestamp:' + timestamp + '\n'
             + 'X-Ops-UserId:' + this.user,
 
-        sig = pkey(this.key).privateEncrypt(req, 'utf8', 'base64'),
+        sig = pkey(this.key).privateEncrypt(canonicalReq, 'utf8', 'base64'),
 
         headers = {
             Accept: 'application/json',
@@ -54,17 +54,13 @@ function req(method, uri, body, _) {
         headers: headers,
         json: true,
         body: body
-    }, function (err, resp, body) {
-        if (err) _(err);
-        _(null, body);
-    });
-
+    }, callback);
 }
 
 var methods = ['delete', 'get', 'patch', 'post', 'put'];
 methods.forEach(function (method) {
-    Chef.prototype[method] = function (uri, body, _) {
-        return req.call(this, method, uri, body, _);
+    Chef.prototype[method] = function (uri, body, callback) {
+        return req.call(this, method, uri, body, callback);
     }
 });
 
