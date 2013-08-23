@@ -1,14 +1,11 @@
 {
   "name": "chef",
   "version": "0.2.0",
-  "description": "Access the Opscode Chef Server API from node",
+  "description": "Access the Opscode Chef Server API from Node",
   "main": "chef.js",
   "dependencies": {
     "request": "~2.14.0",
     "ursa": "~0.8.0"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -30,6 +27,10 @@
     {
         "name": "Mal Graty",
         "email": "mal.graty@googlemail.com"
+    },
+    {
+        "name": "Nathan L Smith",
+        "email": "nlloyds@gmail.com"
     }
   ],
   "license": "MIT"

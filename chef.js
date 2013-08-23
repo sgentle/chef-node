@@ -1,8 +1,8 @@
 var hash = require('crypto').createHash,
     url = require('url'),
-
     pkey = require('ursa').coercePrivateKey,
-    request = require('request');
+    request = require('request'),
+    methods = ['delete', 'get', 'post', 'put'];
 
 function sha1(str) {
     return hash('sha1').update(str).digest('base64');
@@ -15,14 +15,15 @@ function Chef(user, key, base) {
 }
 
 function req(method, uri, body, callback) {
-
     method = method.toUpperCase()
 
-    if ( !~uri.indexOf(this.base) )
-        uri = this.base + uri;
+    // Add the base property of the client if the request does not specify the
+    // full URL.
+    if (uri.indexOf(this.base) === -1) { uri = this.base + uri; }
 
-    if ( typeof body === 'function' )
-        callback = body, body = undefined;
+    // Use the third parameter as the callback if a body was not given (like for
+    // a GET request.)
+    if (typeof body === 'function') { callback = body; body = undefined; }
 
     var timestamp = new Date().toISOString().slice(0, -5) + 'Z',
         pathHash = sha1(url.parse(uri).path),
@@ -46,7 +47,7 @@ function req(method, uri, body, callback) {
         };
 
     sig.match(/.{1,60}/g).forEach(function (hash, line) {
-        headers['X-Ops-Authorization-' + ++line] = hash
+        headers['X-Ops-Authorization-' + (line + 1)] = hash
     });
 
     return request(uri, {
@@ -57,15 +58,12 @@ function req(method, uri, body, callback) {
     }, callback);
 }
 
-var methods = ['delete', 'get', 'patch', 'post', 'put'];
 methods.forEach(function (method) {
     Chef.prototype[method] = function (uri, body, callback) {
         return req.call(this, method, uri, body, callback);
     }
 });
 
-module.exports = {
-    createClient: function (user, key, server) {
-        return new Chef(user, key, server);
-    }
+exports.createClient = function (user, key, server) {
+    return new Chef(user, key, server);
 };
