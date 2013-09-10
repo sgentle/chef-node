@@ -1,5 +1,5 @@
 var expect = require('chai').expect,
-    chef = require('chef'),
+    chef = require('../chef'),
     key = require('fs').readFileSync(__dirname + '/fixtures/example.pem'),
     nock = require('nock');
 
