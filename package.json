@@ -7,6 +7,11 @@
     "request": "~2.14.0",
     "ursa": "~0.8.0"
   },
+  "devDependencies": {
+    "chai": "~1.7.2",
+    "mocha": "~1.12.1",
+    "nock": "~0.22.1"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/sgentle/chef-node.git"
@@ -20,18 +25,21 @@
   ],
   "contributors": [
     {
-        "name": "Sam Gentle",
-        "email": "sam@samgentle.com",
-        "url": "http://samgentle.com/"
+      "name": "Sam Gentle",
+      "email": "sam@samgentle.com",
+      "url": "http://samgentle.com/"
     },
     {
-        "name": "Mal Graty",
-        "email": "mal.graty@googlemail.com"
+      "name": "Mal Graty",
+      "email": "mal.graty@googlemail.com"
     },
     {
-        "name": "Nathan L Smith",
-        "email": "nlloyds@gmail.com"
+      "name": "Nathan L Smith",
+      "email": "nlloyds@gmail.com"
     }
   ],
+  "scripts": {
+    "test": "mocha tests --recursive --reporter spec"
+  },
   "license": "MIT"
 }
