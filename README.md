@@ -1,4 +1,6 @@
-# node-chef
+# chef-node
+
+[![Build Status](https://travis-ci.org/sgentle/chef-node.png)](https://travis-ci.org/sgentle/chef-node)
 
 A simple [Chef](http://www.opscode.com/chef/) client for Node.js. Handles the
 authentication so you can get on with Cheffing.
