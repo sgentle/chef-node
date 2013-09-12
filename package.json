@@ -10,7 +10,8 @@
   "devDependencies": {
     "chai": "~1.7.2",
     "mocha": "~1.12.1",
-    "nock": "~0.22.1"
+    "nock": "~0.22.1",
+    "sinon": "~1.7.3"
   },
   "repository": {
     "type": "git",
