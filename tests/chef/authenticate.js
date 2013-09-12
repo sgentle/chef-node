@@ -20,7 +20,7 @@ describe('authenticate', function () {
     });
 
     it('should have an X-Chef-Version property', function () {
-        expect(this.headers).to.have.property('X-Chef-Version', '11.6.x');
+        expect(this.headers).to.have.property('X-Chef-Version', '11.6.0');
     });
 
     it('should have an X-Ops-Content-Hash property', function () {
