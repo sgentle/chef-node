@@ -48,7 +48,7 @@ module.exports = function authenticate(client, options) {
         + 'X-Ops-UserId:' + user;
 
     headers = {
-        'X-Chef-Version': '11.6.x',
+        'X-Chef-Version': '11.6.0',
         'X-Ops-Content-Hash': bh,
         'X-Ops-Sign': 'version=1.0',
         'X-Ops-Timestamp': ts,
