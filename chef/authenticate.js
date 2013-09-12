@@ -39,7 +39,7 @@ module.exports = function authenticate(client, options) {
         ph = pathHash(options.uri),
         ts = timestamp(),
         user = client.user,
-        canonicalReq, sig, headers;
+        canonicalReq, headers;
 
     canonicalReq = 'Method:' + options.method + '\n'
         + 'Hashed Path:' + ph + '\n'
@@ -56,7 +56,7 @@ module.exports = function authenticate(client, options) {
     };
 
     sign(client.key, canonicalReq).match(/.{1,60}/g).forEach(function (hash, line) {
-          headers['X-Ops-Authorization-' + (line + 1)] = hash
+        headers['X-Ops-Authorization-' + (line + 1)] = hash
     });
 
     return headers;
