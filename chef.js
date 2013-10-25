@@ -31,7 +31,7 @@ function req(method, uri, body, callback) {
 methods.forEach(function (method) {
     Chef.prototype[method] = function (uri, body, callback) {
         return req.call(this, method, uri, body, callback);
-    }
+    };
 });
 
 exports.createClient = function (user, key, server) {

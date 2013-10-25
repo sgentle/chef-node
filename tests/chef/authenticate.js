@@ -12,7 +12,7 @@ describe('authenticate', function () {
     });
 
     afterEach(function () {
-        this.clock.restore()
+        this.clock.restore();
     });
 
     it('should return an object', function () {

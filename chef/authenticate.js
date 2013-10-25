@@ -41,11 +41,11 @@ module.exports = function authenticate(client, options) {
         user = client.user,
         canonicalReq, headers;
 
-    canonicalReq = 'Method:' + options.method + '\n'
-        + 'Hashed Path:' + ph + '\n'
-        + 'X-Ops-Content-Hash:' + bh + '\n'
-        + 'X-Ops-Timestamp:' + ts + '\n'
-        + 'X-Ops-UserId:' + user;
+    canonicalReq = 'Method:' + options.method + '\n' +
+        'Hashed Path:' + ph + '\n' +
+        'X-Ops-Content-Hash:' + bh + '\n' +
+        'X-Ops-Timestamp:' + ts + '\n' +
+        'X-Ops-UserId:' + user;
 
     headers = {
         'X-Chef-Version': '11.6.0',
@@ -56,7 +56,7 @@ module.exports = function authenticate(client, options) {
     };
 
     sign(client.key, canonicalReq).match(/.{1,60}/g).forEach(function (hash, line) {
-        headers['X-Ops-Authorization-' + (line + 1)] = hash
+        headers['X-Ops-Authorization-' + (line + 1)] = hash;
     });
 
     return headers;
