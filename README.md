@@ -2,6 +2,7 @@
 
 [![NPM version](https://badge.fury.io/js/chef.png)](http://badge.fury.io/js/chef)
 [![Build Status](https://travis-ci.org/sgentle/chef-node.png)](https://travis-ci.org/sgentle/chef-node)
+[![Code Climate](https://codeclimate.com/github/sgentle/chef-node.png)](https://codeclimate.com/github/sgentle/chef-node)
 
 A simple [Chef](http://www.opscode.com/chef/) client for Node.js. Handles the
 authentication so you can get on with Cheffing.

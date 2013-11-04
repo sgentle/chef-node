@@ -18,12 +18,12 @@ describe('chef', function () {
             });
 
             it('should use the base URI when none is given in the request', function () {
-                request = this.client.get('/nodes');
+                var request = this.client.get('/nodes');
                 expect(request.uri.href).to.eq('https://example.com/nodes');
             });
 
             it('should use the URI in the argments if it is a full one', function () {
-                request = this.client.get('https://example.com/nodes');
+                var request = this.client.get('https://example.com/nodes');
                 expect(request.uri.href).to.eq('https://example.com/nodes');
             });
         });
