@@ -5,7 +5,7 @@
   "main": "chef.js",
   "dependencies": {
     "request": "~2.14.0",
-    "ursa": "~0.8.0"
+    "forsake": "~0.1.0"
   },
   "devDependencies": {
     "chai": "~1.7.2",

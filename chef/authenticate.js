@@ -1,6 +1,6 @@
 var hash = require('crypto').createHash,
     url = require('url'),
-    pkey = require('ursa').coercePrivateKey;
+    sign = require('forsake').sign;
 
 // Create a base64 encoded SHA1 hash from a string
 function sha1(str) {
@@ -17,11 +17,6 @@ function pathHash(uri) {
     return sha1(url.parse(uri).path);
 }
 
-// Create signed key from key and canonical request
-function sign(key, req) {
-    return pkey(key).privateEncrypt(req, 'utf8', 'base64');
-}
-
 // Generate a timestamp, formatted how Chef wants it
 function timestamp() {
     return new Date().toISOString().slice(0, -5) + 'Z';
@@ -29,11 +24,12 @@ function timestamp() {
 
 // Function used internally to build Chef authentication headers.
 //
-// Takes a client object and an options object. The client object must contain a
-// user and key; the options object must include uri, method, and body.
+// Takes a client object and an options object. The client object must
+// contain a user and key; the options object must include uri, method,
+// and body.
 //
-// Returns an object that includes the required headers for authenticating with
-// Chef.
+// Returns an object that includes the required headers for
+// authenticating with Chef.
 module.exports = function authenticate(client, options) {
     var bh = bodyHash(options.body),
         ph = pathHash(options.uri),
@@ -55,9 +51,12 @@ module.exports = function authenticate(client, options) {
         'X-Ops-UserId': user
     };
 
-    sign(client.key, canonicalReq).match(/.{1,60}/g).forEach(function (hash, line) {
-        headers['X-Ops-Authorization-' + (line + 1)] = hash;
-    });
+    sign(canonicalReq, client.key)
+        .toString('base64')
+        .match(/.{1,60}/g)
+        .forEach(function (hash, line) {
+            headers['X-Ops-Authorization-' + (line + 1)] = hash;
+        });
 
     return headers;
 };
