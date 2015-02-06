@@ -14,7 +14,7 @@ function bodyHash(body) {
 
 // Hash the path of the uri
 function pathHash(uri) {
-    return sha1(url.parse(uri).path);
+    return sha1(url.parse(uri).pathname);
 }
 
 // Generate a timestamp, formatted how Chef wants it
