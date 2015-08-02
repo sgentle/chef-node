@@ -36,6 +36,12 @@ The `client` object supports `delete`, `get`, `post` and `put` methods
 and accepts relative and absolute URLs (so you can use URLs returned in
 responses.)
 
+## Self Signed Certs
+
+If you need to connect to a chef server with a self signed cert, add the following to the .js file
+
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0"
+
 ## License
 
 The MIT License (MIT)
